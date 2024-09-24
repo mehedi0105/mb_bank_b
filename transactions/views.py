@@ -77,6 +77,8 @@ class Withdraw(APIView):
         account = Account.objects.get(account_no=account_no)
         if amount is not None:
             balance = Decimal(amount)
+            if account.account_balance <= balance:
+                return Response({"error":"Your account balance is less than the amount you wish to withdraw Please enter the correct amount"},status=status.HTTP_400_BAD_REQUEST)
             account.account_balance -= balance
             account.save()
 
@@ -120,6 +122,16 @@ class TransferMoney(APIView):
             transactions.save()
             return Response({"success": "Transfer Money Success"}, status=status.HTTP_200_OK)
         return Response({"error": "Amount is None."}, status=status.HTTP_400_BAD_REQUEST)
+
+class UserTransaction(APIView):
+    
+    def get(self,request,id):
+        try:
+            transactions = Transaction.objects.filter(account = id)
+            serializer = TransactionSerializers(transactions, many = True)
+            return Response(serializer.data)
+        except Transaction.DoesNotExist:
+            return Response({'error': 'Transaction Not Found'}, status=status.HTTP_404_NOT_FOUND)
 
 
 class Loan(APIView):

@@ -79,3 +79,8 @@ class OpenAccountSerializers(serializers.ModelSerializer):
 class LoginSerializers(serializers.Serializer):
     username = serializers.CharField(required = True)
     password = serializers.CharField(required = True)
+
+class UserAccountSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = acc.Account
+        fields = '__all__'

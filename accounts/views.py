@@ -57,6 +57,22 @@ def is_activeate(request,uid64,token):
     else:
         return HttpResponse("Activation link is invalid!", status=status.HTTP_400_BAD_REQUEST)
 
+class UserAccount(APIView):
+    
+    def get(self, request, id):
+        try:
+            print(id)
+            account = Account.objects.get(user = id)
+            serializer = src.UserAccountSerializer(account)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Account.DoesNotExist:
+            return Response({'error': 'Account Not Found'}, status=status.HTTP_404_NOT_FOUND)
+
+        
+
+
+
+
 class Login(APIView):
     def post(self,request):
         serializer = src.LoginSerializers(data = request.data)
