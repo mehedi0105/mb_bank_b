@@ -16,4 +16,4 @@ pydirectory
 PyJWT
 python-dotenv
 sqlparse
-tzdata=
+tzdata
