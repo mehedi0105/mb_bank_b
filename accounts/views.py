@@ -29,7 +29,7 @@ class OpenAccount(APIView):
 
             token = default_token_generator.make_token(user)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
-            confirm_link = f"https://mehedi0105.github.io/mb_bank_frontend/is_activeate/{uid}/{token}/"
+            confirm_link = f"https://mb-bank-b.onrender.com/is_activeate/{uid}/{token}/"
             name = f"Hello {user.first_name} {user.last_name}"
             email_subject = "Verify Your Email Address - Complete Your Registration"
             email_body = render_to_string('./openaccount.html',{
@@ -53,7 +53,7 @@ def is_activeate(request,uid64,token):
     if user is not None and default_token_generator.check_token(user,token):
         user.is_active = True
         user.save()
-        return redirect('https://phitron.gitbook.io/django/module_1/module_1_1')
+        return redirect('https://mehedi0105.github.io/mb_bank_frontend/login.html')
     else:
         return HttpResponse("Activation link is invalid!", status=status.HTTP_400_BAD_REQUEST)
 
