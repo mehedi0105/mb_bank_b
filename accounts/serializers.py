@@ -84,3 +84,8 @@ class UserAccountSerializer(serializers.ModelSerializer):
     class Meta:
         model = acc.Account
         fields = '__all__'
+
+class UserDetailSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = '__all__'

@@ -67,6 +67,17 @@ class UserAccount(APIView):
             return Response(serializer.data, status=status.HTTP_200_OK)
         except Account.DoesNotExist:
             return Response({'error': 'Account Not Found'}, status=status.HTTP_404_NOT_FOUND)
+        
+class UserDetails(APIView):
+    
+    def get(self, request, id):
+        try:
+            print(id)
+            account = User.objects.get(pk = id)
+            serializer = src.UserDetailSerializer(account)
+            return Response(serializer.data, status=status.HTTP_200_OK)
+        except Account.DoesNotExist:
+            return Response({'error': 'User Not Found'}, status=status.HTTP_404_NOT_FOUND)
 
         
 
