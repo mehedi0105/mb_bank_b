@@ -29,7 +29,7 @@ class OpenAccount(APIView):
 
             token = default_token_generator.make_token(user)
             uid = urlsafe_base64_encode(force_bytes(user.pk))
-            confirm_link = f"http://127.0.0.1:8000/is_activeate/{uid}/{token}/"
+            confirm_link = f"https://mehedi0105.github.io/mb_bank_frontend/{uid}/{token}/"
             name = f"Hello {user.first_name} {user.last_name}"
             email_subject = "Verify Your Email Address - Complete Your Registration"
             email_body = render_to_string('./openaccount.html',{

@@ -9,6 +9,7 @@ TRANSACTION_TYPE = {
 }
 
 LOAN_TYPE = {
+    ('personal_loan','personal_loan'),
     ('home_loan','home_loan'),
     ('car_loan','car_loan'),
     ('bussiness_loan','business_loan'),
