@@ -148,9 +148,9 @@ class Loan(APIView):
             return Response(serializer.data, status=status.HTTP_201_CREATED)
         return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
     
-    def put(self,request,id=None):
+    def put(self,request,pk=None):
         try :
-            loan = l.objects.get(pk=id)
+            loan = l.objects.get(pk=pk)
         except l.DoesNotExist():
             return Response({'error':"Loan not found"},status=status.HTTP_400_BAD_REQUEST)
 
