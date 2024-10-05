@@ -10,5 +10,5 @@ class LoanSerializers(serializers.ModelSerializer):
     class Meta:
         model = md.Loan
         fields = '__all__'
-        read_only_fields = ['date_created']
+
 

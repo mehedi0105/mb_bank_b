@@ -2,7 +2,7 @@ from typing import Any
 from django.shortcuts import render
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.views.generic import CreateView
-from .models import Transaction, Loan
+from .models import Transaction, Loan as l
 from rest_framework.views import APIView
 from .constraints import TRANSACTION_TYPE
 from rest_framework.response import Response
@@ -135,13 +135,11 @@ class UserTransaction(APIView):
 
 
 class Loan(APIView):
-    # def get(self,request,pk=None):
-    # #     loans = Loan.objects.all()
-    # #     seializer = LoanSerializers(loans , many = True)
-    # #     return Response (seializer.data)
-    #     loans = Loan.objects.get()
-    #     serializer = LoanSerializers(loans, many=True)
-    #     return Response(serializer.data, status=status.HTTP_200_OK)
+    def get(self,request):
+        # print(Loan.objects.all())
+        loans = l.objects.all()
+        serializer = LoanSerializers(loans, many=True)
+        return Response(serializer.data, status=status.HTTP_200_OK)
     
     def post(self,request):
         serializer = LoanSerializers(data = request.data)

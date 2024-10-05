@@ -19,6 +19,7 @@ class Loan(models.Model):
     amount = models.DecimalField(decimal_places=2, max_digits=12, default=0)
     loan_type = models.CharField(max_length=100, choices=LOAN_TYPE)
     loan_status = models.BooleanField(default=False)
+    loan_approve = models.BooleanField(default=False)
     date_created = models.DateTimeField(default=timezone.now)
 
     def __str__(self):
